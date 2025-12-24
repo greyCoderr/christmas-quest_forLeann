@@ -13,17 +13,36 @@ function getEnv() {
   }
 }
 
+function validateConfig(requiredKeys, env) {
+  const missing = requiredKeys.filter((k) => !env[k])
+  if (missing.length) {
+    console.error('[emailjs] missing config', missing)
+    return { ok: false, missing }
+  }
+  return { ok: true, missing: [] }
+}
+
 function getEmailJsGlobal() {
   if (typeof window === 'undefined') return null
   return window.emailjs || null
 }
 
+let emailJsInitialized = false
+
+function ensureEmailJsInit(emailjs, publicKey) {
+  if (emailJsInitialized || !emailjs?.init || !publicKey) return
+  try {
+    emailjs.init({ publicKey })
+    emailJsInitialized = true
+  } catch {
+    // ignore init failures; legacy send call will still be attempted
+  }
+}
+
 async function trySendWithEmailJs(emailjs, serviceId, templateId, params, publicKey) {
   // v4: emailjs.send(serviceId, templateId, params, { publicKey })
   try {
-    if (emailjs.init) {
-      try { emailjs.init({ publicKey }) } catch { /* ignore */ }
-    }
+    ensureEmailJsInit(emailjs, publicKey)
     return await emailjs.send(serviceId, templateId, params, { publicKey })
   } catch (e) {
     // older signature: emailjs.send(serviceId, templateId, params, publicKey)
@@ -36,7 +55,13 @@ export async function sendStartEmailOnce() {
   if (getFlag(LS.startEmailSent)) return
 
   const env = getEnv()
-  if (!env.publicKey || !env.serviceId || !env.templateStart) {
+  console.log('[emailjs] start send attempt', {
+    hasKey: !!env.publicKey,
+    hasService: !!env.serviceId,
+    hasTemplate: !!env.templateStart,
+  })
+  const config = validateConfig(['publicKey', 'serviceId', 'templateStart'], env)
+  if (!config.ok) {
     // silently skip if not configured
     logEvent('EMAIL_START_SKIPPED_NOT_CONFIGURED')
     setFlag(LS.startEmailSent, true) // avoid endless attempts if you forgot env vars
@@ -52,7 +77,7 @@ export async function sendStartEmailOnce() {
 
   const { sessionId, startedAt } = getOrCreateSession()
   const params = {
-    subject: 'She opened your Christmas Quest 🎄',
+    subject: 'She opened your Christmas Quest dYZ,',
     sessionId,
     startedAt,
     userAgent: navigator.userAgent,
@@ -64,9 +89,11 @@ export async function sendStartEmailOnce() {
 
   try {
     await trySendWithEmailJs(emailjs, env.serviceId, env.templateStart, params, env.publicKey)
+    console.log('[emailjs] send ok')
     setFlag(LS.startEmailSent, true)
   } catch (err) {
     // Don't break UX
+    console.warn('[emailjs] send failed', err)
     logEvent('EMAIL_START_FAILED', { error: String(err?.message || err) })
     setFlag(LS.startEmailSent, true) // still only once per session
   }
@@ -77,7 +104,13 @@ export async function sendFinalEmailOnceOrQueue(payload) {
   if (getFlag(LS.finalEmailSent)) return
 
   const env = getEnv()
-  if (!env.publicKey || !env.serviceId || !env.templateFinal) {
+  console.log('[emailjs] final send attempt', {
+    hasKey: !!env.publicKey,
+    hasService: !!env.serviceId,
+    hasTemplate: !!env.templateFinal,
+  })
+  const config = validateConfig(['publicKey', 'serviceId', 'templateFinal'], env)
+  if (!config.ok) {
     logEvent('EMAIL_FINAL_SKIPPED_NOT_CONFIGURED')
     setFlag(LS.finalEmailSent, true)
     return
@@ -93,15 +126,17 @@ export async function sendFinalEmailOnceOrQueue(payload) {
   try {
     const params = {
       ...payload,
-      subject: payload.subject || 'She finished your Christmas Quest ✅',
+      subject: payload.subject || 'She finished your Christmas Quest バ.',
       to_email: env.toEmail || undefined,
       to_name: env.toName || undefined,
     }
     await trySendWithEmailJs(emailjs, env.serviceId, env.templateFinal, params, env.publicKey)
+    console.log('[emailjs] send ok')
     setFlag(LS.finalEmailSent, true)
     localStorage.removeItem(LS.pendingFinalEmail)
     localStorage.removeItem(LS.pendingFinalEmailRetries)
   } catch (err) {
+    console.warn('[emailjs] send failed', err)
     logEvent('EMAIL_FINAL_FAILED', { error: String(err?.message || err) })
     queuePendingFinalEmail(payload)
   }
@@ -132,7 +167,7 @@ export async function retryPendingFinalEmailOnce() {
 
   const env = getEnv()
   const emailjs = getEmailJsGlobal()
-  if (!env.publicKey || !env.serviceId || !env.templateFinal || !emailjs) {
+  if (!validateConfig(['publicKey', 'serviceId', 'templateFinal'], env).ok || !emailjs) {
     // can't retry
     localStorage.setItem(LS.pendingFinalEmailRetries, String(retries + 1))
     return
@@ -140,11 +175,13 @@ export async function retryPendingFinalEmailOnce() {
 
   try {
     await trySendWithEmailJs(emailjs, env.serviceId, env.templateFinal, pending.payload, env.publicKey)
+    console.log('[emailjs] send ok')
     setFlag(LS.finalEmailSent, true)
     localStorage.removeItem(LS.pendingFinalEmail)
     localStorage.removeItem(LS.pendingFinalEmailRetries)
     logEvent('EMAIL_FINAL_RETRY_SUCCESS')
   } catch (err) {
+    console.warn('[emailjs] send failed', err)
     localStorage.setItem(LS.pendingFinalEmailRetries, String(retries + 1))
     logEvent('EMAIL_FINAL_RETRY_FAILED', { error: String(err?.message || err) })
   }
