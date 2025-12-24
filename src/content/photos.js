@@ -6,7 +6,7 @@ const photo1 = new URL('../assets/photos/photo1.jpg', import.meta.url).href
 const photo2 = new URL('../assets/photos/photo2.jpg', import.meta.url).href
 const photo3 = new URL('../assets/photos/photo3.jpg', import.meta.url).href
 const photo4 = new URL('../assets/photos/photo4.jpg', import.meta.url).href
-const photo7 = new URL('../assets/photos/photo4.jpg', import.meta.url).href
+const photo7 = new URL('../assets/photos/photo7.jpg', import.meta.url).href
 const photo5 = new URL('../assets/photos/photo5.jpg', import.meta.url).href
 const photo6 = new URL('../assets/photos/photo6.jpg', import.meta.url).href
 
