@@ -48,7 +48,7 @@ export default function GameOver({ personalization, game, onPlayAgain, onContinu
 
   const message = useMemo(() => {
     const s = game?.scoreTotal ?? 0
-    if (s >= 55) return "Elite cozy legend. 10/10 snowflake grabbing."
+    if (s >= 55) return "Elite lovely legend. 10/10 snowflake grabbing."
     if (s >= 40) return "Very impressive. Also: illegal amounts of cute."
     return "You did it! The quest gods approve (and so do I)."
   }, [game])

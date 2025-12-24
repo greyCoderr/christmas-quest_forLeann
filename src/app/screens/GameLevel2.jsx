@@ -40,7 +40,7 @@ export default function GameLevel2({ personalization, onComplete }) {
         <ProgressBar current={2} />
 
         <div>
-          <div className="title">Level 2 — Cozy Riddle ✨</div>
+          <div className="title">Level 2 — Simple Riddle ✨</div>
           <div className="subtitle" style={{ marginTop: 8 }}>
             Pick the cutest correct answer. (No stress{personalization?.nickname ? `, ${personalization.nickname}` : ''}.)
           </div>

@@ -162,7 +162,7 @@ export function buildFinalSummaryPayload({ personalization, game, finalChoice, f
     finishedAt,
     durationSeconds,
     companion: personalization?.companion || 'cat',
-    vibe: personalization?.vibe || 'Cozy',
+    vibe: personalization?.vibe || 'Warm',
     nickname: personalization?.nickname || '',
     scoreTotal: game?.scoreTotal ?? 0,
     replayCount: game?.replayCount ?? 0,

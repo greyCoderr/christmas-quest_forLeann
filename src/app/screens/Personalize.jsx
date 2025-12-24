@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react'
 import CompanionPicker from '../components/CompanionPicker'
 
-const vibes = ['Cozy', 'Cute', 'Sparkly']
+const vibes = ['Warm', 'Cute', 'Sparkly']
 
 export default function Personalize({ personalization, onChange, onBegin }) {
-  const p = personalization || { companion: 'cat', vibe: 'Cozy', nickname: '' }
+  const p = personalization || { companion: 'cat', vibe: 'Warm', nickname: '' }
 
   const vibeRow = useMemo(() => (
     <div className="row">
@@ -32,7 +32,7 @@ export default function Personalize({ personalization, onChange, onBegin }) {
         <div>
           <div className="title">Make it yours ♡ ︎</div>
           <div className="subtitle" style={{ marginTop: 8 }}>
-            Pick a companion and a vibe. (Don’t worry — it stays cute either way.)
+            Pick a companion and a vibe. (Don’t worry, it stays cute either way.)
           </div>
           <div className="badge vibeTag" style={{ marginTop: 10, alignSelf: 'flex-start' }}>
             Vibe active: <strong style={{ marginLeft: 6 }}>{p.vibe}</strong>
@@ -51,7 +51,7 @@ export default function Personalize({ personalization, onChange, onBegin }) {
 
         <div className="card" style={{ padding: 16 }}>
           <div style={{ fontWeight: 700 }}>Choose your vibe</div>
-          <div className="small" style={{ marginTop: 6 }}>Cozy / Cute / Sparkly</div>
+          <div className="small" style={{ marginTop: 6 }}>Warm / Cute / Sparkly</div>
           <div style={{ marginTop: 10 }}>{vibeRow}</div>
         </div>
 

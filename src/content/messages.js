@@ -4,12 +4,12 @@ export const letter = {
     'Hello, my dearest! Merry Christmas!! ❤️',
     'Your smile is the most precious thing I ever have.',
     'I want to see that smile throughout our journey, even on the toughest times.',
-    'Your eyes always melt my heart. Hope they never lose that shine.',
+    'Your eyes always melt my heart. Hope they never lose their shine.',
     "I'm always here rooting for you. You can always count on me, even in difficult times.",
     'I notice your kindness, your patience, the way you make ordinary days feel warmer.',
     'I will always take care of you, ALWAYS.',
-    'Thank you for being you. If you ever feel unsure, tap my shoulder and I’ll come running—like a very loyal, slightly confused penguin.',
-    'Basta nandito lang ako palagi haa. Wag mahihiyang lumapit at magsabi.',
+    'Thank you for being you. If you ever feel unsure, tap my shoulder and I’ll come running like a very loyal and caring penguin.',
+    'Basta nandito lang ako palagi, haa. Wag mahihiyang lumapit at magsabi.',
     'Thank you for everything. Ilysm, my dear!!♡',
     '',
     'Okay. Now keep going, there’s something waiting.',
@@ -27,7 +27,7 @@ export const memoryShards = [
   },
   {
   title: "Note for My Dearest Leann #3",
-  text: "Sorry for those little moments when we felt a bit disconnected, haa. But please remember na I’m here, always here, loving you every single time. I wish for us to stay connected forever, patiently fixing the little loose strings together. I’ll always be right beside you, cheering you on, believing in you, and rooting for you with all my heart, my dear. Ilysm! ❤️" 
+  text: "Sorry for those little moments when we felt a bit disconnected, haa. But please remember na I’m here, always here, loving you in every single time. I wish for us to stay connected forever, patiently fixing the little loose strings together. I’ll always be right beside you, cheering you on, believing in you, and rooting for you with all my heart, my dear. Ilysm! ❤️" 
 }
 ]
 
@@ -37,19 +37,21 @@ export const notes = [
   'You’re perfectly beautiful. That’s the whole note. I rest my case.',
   'Nandito lang ako palagi haa, mwaa!',
   "I'm rooting for you!",
-  'Tara, kain us hehe',
+  'Tara, kain us hehe!',
   "If hugs were currency, I'd be a billionaire because of you.",
-  'Always wear your sweetest SMILE, haa',
-  'You are my favorite notification',
+  'Always wear your sweetest SMILE, haa!',
+  'You are my favorite notification.',
   'I will always take care of you.',
+  'Those eyes and your smile will always be my favorite part, it is Godly stunning.',
+  'gala tayooo sabay food trip, hehe!',
 ]
 
 export const riddles = [
   {
-    question: 'A cat walks into a cozy café and sees fries. What does it order?',
+    question: 'A cat walks into a comfy café and sees fries. What does it order?',
     choices: ['A purr-ger', 'A paw-tato corner', 'A meow-scarpone dessert', 'A nap (on your lap)'],
     correctIndex: 1,
-    hint: 'Think: paws + potatoes — and your favorite fries spot.',
+    hint: 'Think: paws + potatoes and your favorite fries spot.',
   },
   {
     question: 'Three words: I ___ ___ ___ . Fill the blanks, my love.',

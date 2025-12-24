@@ -10,7 +10,7 @@ export default function PreLanding({ onContinue }) {
           MERRY CHRISTMAS, MY DEAREST!!
         </div>
         <div className="subtitle" style={{ marginTop: 12 }}>
-          A tiny quest is waiting. No pressure. Maximum cozy.
+          A tiny quest is waiting. No pressure. Maximum relaxing.
         </div>
         <div className="dividerEmoji" aria-hidden="true">
           ✨ ❄️ 🎀 ✨

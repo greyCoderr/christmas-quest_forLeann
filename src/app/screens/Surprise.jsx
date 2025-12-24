@@ -35,9 +35,9 @@ export default function Surprise({ personalization, onContinue }) {
         </div>
 
         <div className="card" style={{ padding: 16, marginTop: 14 }}>
-          <div style={{ fontWeight: 900 }}>Notes / Compliments</div>
+          <div style={{ fontWeight: 900 }}>Notes</div>
           <div className="subtitle" style={{ marginTop: 6 }}>
-            Tap for a sweet note. Repeat as needed.
+            Tap for a sweet note. Repeat as needed, again and again.
           </div>
           <div style={{ marginTop: 12 }}>
             <button className="btn btnPrimary" onClick={pickNote}>Tap for a sweet note</button>

@@ -50,7 +50,7 @@ const DEFAULT_STATE = {
   screen: SCREENS.PRELANDING,
   personalization: {
     companion: 'cat',
-    vibe: 'Cozy',
+    vibe: 'Warm',
     nickname: '',
   },
   game: {
@@ -303,7 +303,7 @@ export default function App() {
   }
 
   return (
-    <div id="app" className="app" data-vibe={(appState.personalization?.vibe || 'Cozy').toLowerCase()}>
+    <div id="app" className="app" data-vibe={(appState.personalization?.vibe || 'Warm').toLowerCase()}>
       <div className="shell">
         <TopBar />
 
