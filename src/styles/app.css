@@ -270,12 +270,12 @@ h1,h2,h3,.title{ font-family:var(--fontDisplay); }
 }
 
 /* Vibe themes */
-.app[data-vibe="Warm"] .card{
+.app[data-vibe="warm"] .card{
   background:linear-gradient(180deg, rgba(255,250,242,.88), rgba(255,245,232,.78));
   box-shadow:0 16px 40px rgba(181,107,118,.18);
   border-color:rgba(243,214,166,.75);
 }
-.app[data-vibe="Warm"] .card::before{
+.app[data-vibe="warm"] .card::before{
   content:'';
   position:absolute;
   inset:0;
@@ -283,8 +283,8 @@ h1,h2,h3,.title{ font-family:var(--fontDisplay); }
   opacity:.4;
   pointer-events:none;
 }
-.app[data-vibe="Warm"] .panel{ border-radius:22px; }
-.app[data-vibe="Warm"]{
+.app[data-vibe="warm"] .panel{ border-radius:22px; }
+.app[data-vibe="warm"]{
   background:
     radial-gradient(900px 600px at 20% 10%, rgba(243,214,166,.35), transparent 58%),
     radial-gradient(1000px 800px at 80% 40%, rgba(181,107,118,.12), transparent 60%),
