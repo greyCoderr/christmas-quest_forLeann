@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --bg:#FFF7F2;
+  --text:#2B2B2B;
+  --muted:rgba(43,43,43,.72);
+  --primary:#B56B76;
+  --primary2:#9C5560;
+  --accent:#BFE6D2;
+  --gold:#F3D6A6;
+  --card:rgba(255,255,255,0.75);
+  --stroke:rgba(43,43,43,.12);
+  --shadow:0 22px 44px rgba(0,0,0,.08);
+  --radius:18px;
+  --radius2:14px;
+  --max:940px;
+  --fontDisplay:'Fraunces', serif;
+  --fontBody:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+
+body{
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 700px at 15% 15%, rgba(191,230,210,.45), transparent 55%),
+    radial-gradient(1000px 600px at 85% 25%, rgba(243,214,166,.35), transparent 60%),
+    radial-gradient(900px 600px at 50% 90%, rgba(181,107,118,.18), transparent 55%),
+    linear-gradient(180deg, var(--bg), #fff),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0, rgba(255,255,255,.02) 2px, transparent 2px, transparent 6px);
+  background-attachment: fixed;
+  font-family: var(--fontBody);
+  letter-spacing: 0.2px;
+  line-height:1.45;
+}
+
+a{ color:inherit; }
+
+button,
+input{
+  font: inherit;
+}
+
+::selection{
+  background: rgba(181,107,118,.25);
+}

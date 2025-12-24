@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#BFE6D2" stop-opacity="0.85"/>
+      <stop offset="0.55" stop-color="#FFF7F2" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#F3D6A6" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="220" cy="200" r="90" fill="#B56B76" fill-opacity="0.22"/>
+  <circle cx="1380" cy="240" r="120" fill="#B56B76" fill-opacity="0.16"/>
+  <circle cx="1200" cy="820" r="160" fill="#B56B76" fill-opacity="0.12"/>
+
+  <rect x="280" y="230" width="1040" height="540" rx="28" fill="url(#card)" stroke="#2B2B2B" stroke-opacity="0.14"/>
+  <text x="800" y="480" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto" font-size="54" fill="#2B2B2B" fill-opacity="0.82">Add your photo here 💛</text>
+  <text x="800" y="550" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto" font-size="26" fill="#2B2B2B" fill-opacity="0.6">src/content/photos.js → update paths &amp; captions</text>
+
+  <g fill="#2B2B2B" fill-opacity="0.35">
+    <path d="M540 690c-10 0-18-8-18-18 0-25 20-45 45-45h466c25 0 45 20 45 45 0 10-8 18-18 18H540z"/>
+    <path d="M800 360c-52-44-120 5-84 58 20 30 54 60 84 84 30-24 64-54 84-84 36-53-32-102-84-58z"/>
+  </g>
+</svg>
