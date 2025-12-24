@@ -115,7 +115,10 @@ export default function App() {
 
   const [memoryModal, setMemoryModal] = useState(null)
   const [secretModal, setSecretModal] = useState(null)
-  const [soundOn, setSoundOn] = useState(() => localStorage.getItem('cq_soundEnabled') === 'true')
+  const [soundOn, setSoundOn] = useState(() => {
+    const stored = localStorage.getItem('cq_soundEnabled')
+    return stored === null ? true : stored === 'true'
+  })
   const [activeTrack, setActiveTrack] = useState(() => localStorage.getItem('cq_activeTrack') || 'quest')
   const questAudioRef = useRef(null)
   const surpriseAudioRef = useRef(null)
@@ -123,13 +126,20 @@ export default function App() {
 
   const pop = useTinySound(soundOn)
 
+  const QUEST_SRC = `${import.meta.env.BASE_URL}music/quest.mp3`
+  const SURPRISE_SRC = `${import.meta.env.BASE_URL}music/surprise.mp3`
+  console.log('[audio] quest url:', QUEST_SRC)
+  console.log('[audio] surprise url:', SURPRISE_SRC)
+
   const ensureTrack = (track) => {
     const ref = track === 'surprise' ? surpriseAudioRef : questAudioRef
     if (!ref.current) {
-      const src = track === 'surprise' ? '/music/surprise.mp3' : '/music/quest.mp3'
+      const src = track === 'surprise' ? SURPRISE_SRC : QUEST_SRC
       const a = new Audio(src)
       a.loop = true
       a.volume = 0.25
+      a.muted = false
+      a.onerror = (e) => console.warn('[audio] load error', src, e)
       ref.current = a
     }
     return ref.current
@@ -149,11 +159,12 @@ export default function App() {
     localStorage.setItem('cq_activeTrack', track)
     if (!soundOn) return
     const target = ensureTrack(track)
+    console.log('[audio] play', track === 'surprise' ? 'surprise' : 'quest')
     const other = track === 'surprise' ? ensureTrack('quest') : ensureTrack('surprise')
     if (other && other !== target) other.pause()
     target.play().catch(() => {
       const handler = () => {
-        target.play().catch(() => { /* ignore */ })
+        target.play().catch((err) => { console.warn('[audio] play failed', err) })
       }
       document.addEventListener('pointerdown', handler, { once: true })
     })
